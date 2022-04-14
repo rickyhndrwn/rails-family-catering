@@ -39,4 +39,9 @@ RSpec.describe Item, type: :model do
     item.valid?
     expect(item.errors[:description]).to include('is too long (maximum is 150 characters)')
   end
+
+  it 'is invalid without has_many association to ItemCategory' do
+    item = Item.reflect_on_association(:item_categories).macro
+    expect(item).to eq(:has_many)
+  end
 end
