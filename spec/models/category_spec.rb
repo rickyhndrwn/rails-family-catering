@@ -22,8 +22,8 @@ RSpec.describe Category, type: :model do
     expect(category2.errors[:name]).to include("has already been taken")
   end
 
-  it 'is invalid without has_many association to ItemCategory' do
-    category = Category.reflect_on_association(:item_categories).macro
+  it 'is invalid without has_many association to Categorization' do
+    category = Category.reflect_on_association(:categorizations).macro
     expect(category).to eq(:has_many)
   end
 end
