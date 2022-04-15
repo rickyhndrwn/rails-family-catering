@@ -118,4 +118,21 @@ RSpec.describe ItemsController do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    before :each do
+      @item = create(:item)
+    end
+    
+    it "deletes the item from the database" do
+      expect{
+        delete :destroy, params: { id: @item }
+      }.to change(Item, :count).by(-1)
+    end
+
+    it "redirects to items#index" do
+      delete :destroy, params: { id: @item }
+      expect(response).to redirect_to items_url
+    end
+  end
 end
