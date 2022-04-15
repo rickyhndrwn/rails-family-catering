@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ItemCategory, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
+  it 'has a valid factory' do
+    expect(FactoryBot.build(:item)).to be_valid
+  end
 end
