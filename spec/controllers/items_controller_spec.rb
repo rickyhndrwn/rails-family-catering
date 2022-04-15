@@ -53,4 +53,32 @@ RSpec.describe ItemsController do
       expect(response).to render_template :edit
     end
   end
+  
+  describe 'POST #create' do
+    context "with valid attributes" do
+      it "saves the new item in the database" do
+        expect{
+          post :create, params: { item: attributes_for(:item) }
+        }.to change(Item, :count).by(1)
+      end
+
+      it "redirects to the created item" do
+        post :create, params: { item: attributes_for(:item) }
+        expect(response).to redirect_to(item_path(assigns[:item]))
+      end
+    end
+
+    context "with invalid attributes" do
+      it "does not save the new item in the database" do
+        expect{
+          post :create, params: { item: attributes_for(:invalid_item) }
+        }.not_to change(Item, :count)
+      end
+
+      it "re-renders the :new template" do
+        post :create, params: { item: attributes_for(:invalid_item) }
+        expect(response).to render_template :new
+      end
+    end
+  end
 end
