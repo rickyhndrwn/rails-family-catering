@@ -27,4 +27,16 @@ RSpec.describe ItemsController do
       expect(response).to render_template :show
     end
   end
+
+  describe 'GET #new' do
+    it "assigns a new Item to @item" do
+      get :new
+      expect(assigns(:item)).to be_a_new(Item)
+    end
+
+    it "renders the :new template" do
+      get :new
+      expect(:response).to render_template :new
+    end
+  end
 end
