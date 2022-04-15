@@ -14,4 +14,11 @@
     <%= item.price %>
   </p>
 
+  <p>
+    <strong>Categories:</strong>
+    <% item.categories.each do |category| %>
+    <li><<%= category.name %>/li>
+    <% end %>
+  </p>
+
 </div>

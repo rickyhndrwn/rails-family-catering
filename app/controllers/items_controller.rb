@@ -14,6 +14,7 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @categories = Category.all
+    @category_id_coll = Category.all.ids
   end
 
   # GET /items/1/edit
@@ -26,6 +27,8 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
+        ItemCategory.create(item_id: Item.last.id, category_id: params[:category_id])
+        
         format.html { redirect_to item_url(@item), notice: "Item was successfully created." }
         format.json { render :show, status: :created, location: @item }
       else
