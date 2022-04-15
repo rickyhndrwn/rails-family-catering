@@ -34,6 +34,13 @@ RSpec.describe ItemsController do
       expect(assigns(:item)).to be_a_new(Item)
     end
 
+    it "populates an array of all categories" do 
+      cat1 = create(:category)
+      cat2 = create(:category)
+      get :new
+      expect(assigns(:categories)).to match_array([cat1, cat2])
+    end
+
     it "renders the :new template" do
       get :new
       expect(:response).to render_template :new

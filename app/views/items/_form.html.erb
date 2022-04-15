@@ -28,7 +28,7 @@
 
   <div>
     <%= form.label :price, style: "display: block" %>
-    <%= form.collection_select :category_id, Category.all, :id, :name %>
+    <%= form.collection_select :category_id, categories, :id, :name %>
   </div>
 
   <div>
