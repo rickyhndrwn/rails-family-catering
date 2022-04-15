@@ -18,6 +18,7 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+    @categories = Category.all
   end
 
   # POST /items or /items.json
