@@ -3,6 +3,6 @@ class Item < ApplicationRecord
   validates :description, length: { maximum: 150 }
   validates :price, presence: true, numericality: { only_float: true, greater_than_or_equal_to: 0.01 }
 
-  has_many :item_categories
-  has_many :categories, through: :item_categories
+  has_many :categorizations
+  has_many :categories, through: :categorizations
 end
