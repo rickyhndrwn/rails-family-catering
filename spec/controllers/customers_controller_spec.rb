@@ -118,4 +118,21 @@ RSpec.describe CustomersController do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    before :each do
+      @customer = create(:customer)
+    end
+    
+    it "deletes the customer from the database" do
+      expect{
+        delete :destroy, params: { id: @customer }
+      }.to change(Customer, :count).by(-1)
+    end
+
+    it "redirects to customers#index" do
+      delete :destroy, params: { id: @customer }
+      expect(response).to redirect_to customers_url
+    end
+  end
 end
