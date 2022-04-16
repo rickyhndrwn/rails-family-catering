@@ -10,6 +10,6 @@ class Item < ApplicationRecord
   private
 
   def must_have_one_category
-    errors.add(:base, 'Select at least one category') unless category_ids.length > 1
+    errors.add(:base, 'Select at least one category') unless category_ids.length > 0
   end
 end
