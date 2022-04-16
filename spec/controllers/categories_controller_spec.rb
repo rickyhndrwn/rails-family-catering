@@ -39,4 +39,18 @@ RSpec.describe CategoriesController do
       expect(:response).to render_template :new
     end
   end
+
+  describe 'GET #edit' do
+    it "assigns the requested category to @category" do
+      category = create(:category)
+      get :edit, params: { id: category }
+      expect(assigns(:category)).to eq category
+    end
+
+    it "renders the :edit template" do
+      category = create(:category)
+      get :edit, params: { id: category }
+      expect(response).to render_template :edit
+    end
+  end
 end
