@@ -27,4 +27,10 @@ RSpec.describe Customer, type: :model do
     cus2.valid?
     expect(cus2.errors[:email]).to include("has already been taken")
   end
+
+  it 'is invalid with a wrong format email' do
+    customer = FactoryBot.build(:customer, email: 'wrong format email')
+    customer.valid?
+    expect(customer.errors[:email]).to include("wrong format")
+  end
 end
