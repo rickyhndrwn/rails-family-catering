@@ -53,4 +53,32 @@ RSpec.describe CustomersController do
       expect(response).to render_template :edit
     end
   end
+
+  describe 'POST #create' do
+    context "with valid attributes" do
+      it "saves the new customer in the database" do
+        expect{
+          post :create, params: { customer: attributes_for(:customer) }
+        }.to change(Customer, :count).by(1)
+      end
+
+      it "redirects to the created customer" do
+        post :create, params: { customer: attributes_for(:customer) }
+        expect(response).to redirect_to(customer_path(assigns[:customer]))
+      end
+    end
+
+    context "with invalid attributes" do
+      it "does not save the new customer in the database" do
+        expect{
+          post :create, params: { customer: attributes_for(:invalid_customer) }
+        }.not_to change(Customer, :count)
+      end
+
+      it "re-renders the :new template" do
+        post :create, params: { customer: attributes_for(:invalid_customer) }
+        expect(response).to render_template :new
+      end
+    end
+  end
 end
