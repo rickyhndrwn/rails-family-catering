@@ -81,4 +81,41 @@ RSpec.describe CategoriesController do
       end
     end
   end
+
+  describe 'PATCH #update' do
+    before :each do
+      @category = create(:category)
+    end
+    
+    context "with valid attributes" do
+      it "locates the requested @category" do
+        patch :update, params: { id: @category, category: attributes_for(:category) }
+        expect(assigns(:category)).to eq @category
+      end
+
+      it "changes @category's attributes" do
+        patch :update, params: { id: @category, category: attributes_for(:category, name: 'Nasi Uduk') }
+        @category.reload
+        expect(@category.name).to eq('Nasi Uduk')
+      end
+
+      it "redirects to the category" do
+        patch :update, params: { id: @category, category: attributes_for(:category) }
+        expect(response).to redirect_to @category
+      end
+    end
+
+    context "with invalid attributes" do
+      it "does not update the category in the database" do
+        expect{
+          patch :update, params: { id: @category, category: attributes_for(:invalid_category) }
+        }.not_to change(Category, :name)
+      end
+      
+      it "re-renders the :edit template" do
+        patch :update, params: { id: @category, category: attributes_for(:invalid_category) }
+        expect(response).to render_template :edit
+      end
+    end
+  end
 end
