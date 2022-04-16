@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_item, only: %i[ show edit update destroy ]
+  before_action :set_categories_array, only: %i[ edit update new create ]
 
   # GET /items or /items.json
   def index
@@ -14,12 +15,10 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = Item.new
-    @categories = Category.all
   end
 
   # GET /items/1/edit
   def edit
-    @categories = Category.all
   end
 
   # POST /items or /items.json
@@ -69,5 +68,9 @@ class ItemsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def item_params
       params.require(:item).permit(:name, :description, :price, :category_ids => [])
+    end
+
+    def set_categories_array
+      @categories = Category.all
     end
 end
