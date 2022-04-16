@@ -8,4 +8,10 @@ RSpec.describe Customer, type: :model do
   it 'is valid with a name and an email' do
     expect(FactoryBot.build(:customer)).to be_valid
   end
+
+  it 'is invalid without a name' do
+    customer = FactoryBot.build(:customer, name: nil)
+    customer.valid?
+    expect(customer.errors[:name]).to include("can't be blank")
+  end
 end
