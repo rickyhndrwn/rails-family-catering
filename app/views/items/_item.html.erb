@@ -1,24 +1,18 @@
 <div id="<%= dom_id item %>">
-  <p>
-    <strong>Name:</strong>
-    <%= item.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= item.description %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= item.price %>
-  </p>
-
-  <p>
-    <strong>Categories:</strong>
-    <% item.categories.each do |category| %>
-    <li><%= category.name %></li>
-    <% end %>
-  </p>
+  <div class="p-2 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-2">
+      <h1 class="display-6 fw-bold"><%= item.name %>: Rp. <%= item.price %></h1>
+      <p class="col-md-8 fs-4">
+        <%= item.description %>
+      </p>
+      <p>
+        <br>
+        <strong>Categories:</strong>
+        <% item.categories.each do |category| %>
+        <li><%= category.name %></li>
+        <% end %>
+      </p>
+    </div>
+  </div>
 
 </div>

@@ -14,25 +14,25 @@
   <% end %>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class:"form-control", placeholder:"Item Name" %>
   </div>
 
   <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+    <br>
+    <%= form.text_area :description, class:"form-control", placeholder:"Description" %>
   </div>
 
   <div>
+    <br>
     <%= form.label :price, style: "display: block" %>
-    <%= form.text_field :price %>
+    <%= form.text_field :price, class:"col-form-label", placeholder:"Item Price" %>
   </div>
 
   <div>
     <br>
     <%= form.label :category, style: "display: block" %>
     <%= form.collection_check_boxes :category_ids, @categories || [], :id, :name do |c| %>
-      <%= c.check_box %><%= c.label %>
+      <%= c.check_box %>&#9;<%= c.label %>
       <br>
     <% end %>
   </div>
