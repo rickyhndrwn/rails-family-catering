@@ -23,7 +23,7 @@
       <td><%= item.description %></td>
       <td><%= item.price %></td>
       <td>
-        <% item.categories.each do |category| %>
+        <% item.categories.sort_by(&:name).each do |category| %>
         <li><%= category.name %></li>
         <% end %>
       </td>
