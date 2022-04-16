@@ -27,4 +27,16 @@ RSpec.describe CustomersController do
       expect(response).to render_template :show
     end
   end
+
+  describe 'GET #new' do
+    it "assigns a new Customer to @customer" do
+      get :new
+      expect(assigns(:customer)).to be_a_new(Customer)
+    end
+
+    it "renders the :new template" do
+      get :new
+      expect(:response).to render_template :new
+    end
+  end
 end
