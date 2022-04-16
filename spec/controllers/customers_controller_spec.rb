@@ -81,4 +81,41 @@ RSpec.describe CustomersController do
       end
     end
   end
+
+  describe 'PATCH #update' do
+    before :each do
+      @customer = create(:customer)
+    end
+    
+    context "with valid attributes" do
+      it "locates the requested @customer" do
+        patch :update, params: { id: @customer, customer: attributes_for(:customer) }
+        expect(assigns(:customer)).to eq @customer
+      end
+
+      it "changes @customer's attributes" do
+        patch :update, params: { id: @customer, customer: attributes_for(:customer, name: 'Maria') }
+        @customer.reload
+        expect(@customer.name).to eq('Maria')
+      end
+
+      it "redirects to the customer" do
+        patch :update, params: { id: @customer, customer: attributes_for(:customer) }
+        expect(response).to redirect_to @customer
+      end
+    end
+
+    context "with invalid attributes" do
+      it "does not update the customer in the database" do
+        expect{
+          patch :update, params: { id: @customer, customer: attributes_for(:invalid_customer) }
+        }.not_to change(Customer, :name)
+      end
+      
+      it "re-renders the :edit template" do
+        patch :update, params: { id: @customer, customer: attributes_for(:invalid_customer) }
+        expect(response).to render_template :edit
+      end
+    end
+  end
 end
