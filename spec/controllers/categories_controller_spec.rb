@@ -118,4 +118,21 @@ RSpec.describe CategoriesController do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    before :each do
+      @category = create(:category)
+    end
+    
+    it "deletes the category from the database" do
+      expect{
+        delete :destroy, params: { id: @category }
+      }.to change(Category, :count).by(-1)
+    end
+
+    it "redirects to categories#index" do
+      delete :destroy, params: { id: @category }
+      expect(response).to redirect_to categories_url
+    end
+  end
 end
