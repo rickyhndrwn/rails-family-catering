@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
+  before :each do
+    @category = create(:category)
+  end
+  
   it 'has a valid factory' do
     expect(FactoryBot.build(:item)).to be_valid
   end

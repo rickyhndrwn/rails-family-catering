@@ -3,6 +3,7 @@ FactoryBot.define do
     name { Faker::Food.dish }
     description { Faker::Food.description[0..50] }
     price { 10000.0 }
+    category_ids { ["1"] }
   end
 
   factory :invalid_item, parent: :item do

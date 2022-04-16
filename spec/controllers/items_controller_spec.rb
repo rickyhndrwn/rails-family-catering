@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe ItemsController do
+  before :each do
+    @category = create(:category)
+  end
+  
   describe 'GET #index' do
     it "populates an array of all items" do 
       nasi_uduk = create(:item, name: "Nasi Uduk")
@@ -32,13 +36,6 @@ RSpec.describe ItemsController do
     it "assigns a new Item to @item" do
       get :new
       expect(assigns(:item)).to be_a_new(Item)
-    end
-
-    it "populates an array of all categories" do 
-      cat1 = create(:category)
-      cat2 = create(:category)
-      get :new
-      expect(assigns(:categories)).to match_array([cat1, cat2])
     end
 
     it "renders the :new template" do
