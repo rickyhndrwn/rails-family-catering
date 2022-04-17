@@ -3,5 +3,5 @@ class Order < ApplicationRecord
   validates :total_price, presence: true
   validates :status, presence: true
 
-  belongs_to :customers
+  belongs_to :customer
 end
