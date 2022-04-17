@@ -14,7 +14,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @customers.sort_by(&:updated_at).reverse.each_with_index do |customer, index| %>
+    <% @customers.each_with_index do |customer, index| %>
     <tr>
       <td><%= index + 1 %></td>
       <td><%= customer.name %></td>
