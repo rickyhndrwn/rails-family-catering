@@ -1,12 +1,10 @@
 <div id="<%= dom_id customer %>">
-  <p>
-    <strong>Name:</strong>
-    <%= customer.name %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= customer.email %>
-  </p>
-
+  <div class="p-2 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-2">
+      <h1 class="display-6 fw-bold"><%= customer.name %></h1>
+      <p class="col-md-8 fs-4">
+        Email: <%= customer.email %>
+      </p>
+    </div>
+  </div>
 </div>

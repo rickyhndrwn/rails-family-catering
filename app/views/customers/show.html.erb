@@ -3,8 +3,6 @@
 <%= render @customer %>
 
 <div>
-  <%= link_to "Edit this customer", edit_customer_path(@customer) %> |
-  <%= link_to "Back to customers", customers_path %>
-
-  <%= button_to "Destroy this customer", @customer, method: :delete %>
+  <%= link_to "Back", customers_path, class:'btn btn-dark' %>
+  <%= link_to "Edit", edit_customer_path(@customer), class:'btn btn-secondary' %>
 </div>
