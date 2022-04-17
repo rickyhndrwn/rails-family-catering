@@ -9,3 +9,6 @@ Category.create(name: 'Breakfast')
 Category.create(name: 'Lunch')
 Category.create(name: 'Dinner')
 Category.create(name: 'Beverages')
+
+Customer.create(name: 'Ali', email: 'ali@email.com')
+Customer.create(name: 'Boa', email: 'boa@email.com')
