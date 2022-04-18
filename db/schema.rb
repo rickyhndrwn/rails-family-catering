@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_17_113407) do
+ActiveRecord::Schema.define(version: 2022_04_18_154501) do
+
+  create_table "carts", id: false, force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "order_id", null: false
+    t.float "price"
+    t.integer "quantity"
+    t.float "sub_total_price"
+    t.index ["item_id", "order_id"], name: "index_carts_on_item_id_and_order_id"
+    t.index ["order_id", "item_id"], name: "index_carts_on_order_id_and_item_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
