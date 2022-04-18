@@ -27,21 +27,16 @@ class OrdersController < ApplicationController
       @order_customer_id = Customer.find_by(email: params[:email]).id
     else
       @new_customer = Customer.new(name: params[:name], email: params[:email])
-      respond_to do |format|
-        if @new_customer.save
-          @order_customer_id = @new_customer.id
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @new_customer.errors, status: :unprocessable_entity }
-        end
-      end
+      @order_customer_id = @new_customer.id if @new_customer.save
     end
+
+    puts "WEKWEKWEK #{params[:order_date]} #{params[:total_price]} #{params[:status]}"
 
     @order = Order.new(
       order_date: params[:order_date],
       total_price: params[:total_price],
       status: params[:status],
-      customer_id: order_customer_id
+      customer_id: @order_customer_id
     )
 
     respond_to do |format|
