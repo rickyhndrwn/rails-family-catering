@@ -5,7 +5,7 @@ class Cart < ApplicationRecord
   before_save :set_price, :set_sub_total_price
 
 	def set_price
-		self.price = self.menu.price
+		self.price = self.item.price
 	end
 
 	def set_sub_total_price

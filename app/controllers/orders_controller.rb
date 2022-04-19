@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy ]
   before_action :set_items_array, only: %i[ edit update new create ]
   before_action :join_order_date_string, only: %i[ create ]
+  before_action :get_customer_id_by_email, only: %i[ create ]
 
   # GET /orders or /orders.json
   def index
@@ -23,28 +24,7 @@ class OrdersController < ApplicationController
 
   # POST /orders or /orders.json
   def create
-    # @order = Order.new(order_params)
-
-    puts "WEKWEK #{params[:order][:order_date]}"
-
-    return
-
-    @order = Order.new(
-      order_date: order_date,
-      total_price: params[:order][:total_price],
-      status: params[:order][:status]
-    )
-
-    if Customer.exists?(email: params[:order][:email])
-      @order[:customer_id] = Customer.find_by(email: params[:order][:email]).id
-    else
-      @new_customer = Customer.new(name: params[:order][:name], email: params[:order][:email])
-      if @new_customer.save
-        @order[:customer_id] = @new_customer.id
-      else
-        @order.errors.add(:base, 'Email in invalid format')
-      end
-    end
+    @order = Order.new(order_params)
 
     respond_to do |format|
       if @order.save
@@ -98,5 +78,18 @@ class OrdersController < ApplicationController
     def join_order_date_string
       order_date = [ params[:order]['order_date(1i)'], params[:order]['order_date(2i)'], params[:order]['order_date(3i)'] ].join("-")
       params[:order][:order_date] = order_date
+    end
+
+    def get_customer_id_by_email
+      if Customer.exists?(email: params[:order][:email])
+        params[:order][:customer_id] = Customer.find_by(email: params[:order][:email]).id
+      else
+        @new_customer = Customer.new(name: params[:order][:name], email: params[:order][:email])
+        if @new_customer.save
+          params[:order][:customer_id] = @new_customer.id
+        else
+          arams[:order][:customer_id] = -1
+        end
+      end
     end
 end

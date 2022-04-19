@@ -10,7 +10,7 @@ class Order < ApplicationRecord
 
   accepts_nested_attributes_for :carts, allow_destroy: true
 	
-	def total  
+	def total_price
 	  self.carts.map { |cart| cart.sub_total_price }.sum
 	end
 end
