@@ -31,6 +31,7 @@ class OrdersController < ApplicationController
     end
 
     puts "WEKWEKWEK #{params[:order_date]} #{params[:total_price]} #{params[:status]}"
+    puts "WEKWEKWEK #{params[:name]} #{params[:email]}"
 
     @order = Order.new(
       order_date: params[:order_date],
