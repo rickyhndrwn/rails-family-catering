@@ -23,21 +23,24 @@ class OrdersController < ApplicationController
   def create
     # @order = Order.new(order_params)
 
-    if Customer.exists?(email: params[:order][:email])
-      order_customer_id = Customer.find_by(email: params[:order][:email]).id
-    else
-      new_customer = Customer.new(name: params[:order][:name], email: params[:order][:email])
-      order_customer_id = new_customer.id if new_customer.save
-    end
-
     order_date = [ params[:order]['order_date(1i)'], params[:order]['order_date(2i)'], params[:order]['order_date(3i)'] ].join("-")
 
     @order = Order.new(
       order_date: order_date,
       total_price: params[:order][:total_price],
-      status: params[:order][:status],
-      customer_id: order_customer_id
+      status: params[:order][:status]
     )
+
+    if Customer.exists?(email: params[:order][:email])
+      @order[:customer_id] = Customer.find_by(email: params[:order][:email]).id
+    else
+      @new_customer = Customer.new(name: params[:order][:name], email: params[:order][:email])
+      if @new_customer.save
+        @order[:customer_id] = @new_customer.id
+      else
+        @order.errors.add(:base, 'Email in invalid format')
+      end
+    end
 
     respond_to do |format|
       if @order.save
