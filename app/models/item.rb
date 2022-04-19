@@ -7,6 +7,9 @@ class Item < ApplicationRecord
   has_many :categorizations
   has_many :categories, through: :categorizations
 
+  has_many :carts
+  has_many :orders, through: :carts
+
   private
 
   def must_have_one_category

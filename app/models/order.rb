@@ -4,4 +4,7 @@ class Order < ApplicationRecord
   validates :status, presence: true
 
   belongs_to :customer
+
+  has_many :carts
+  has_many :items, through: :carts
 end
