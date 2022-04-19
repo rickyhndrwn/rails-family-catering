@@ -27,11 +27,9 @@
         <%= order.customer.name %> (<%= order.customer.email %>)
       </td>
       <td>
-        <!--
-        <%# <% order.items.sort_by(&:name).each do |item| %> %>
-        <%# <li><%= item.name %></li> %>
-        <%# <% end %> %>
-        -->
+        <% order.items.sort_by(&:name).each do |item| %>
+        <li><%= item.name %></li>
+        <% end %>
       </td>
       <td>
           <%= link_to "Show", order, class:'btn btn-primary' %>

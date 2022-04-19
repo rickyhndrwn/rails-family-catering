@@ -7,4 +7,10 @@ class Order < ApplicationRecord
 
   has_many :carts
   has_many :items, through: :carts
+
+  accepts_nested_attributes_for :carts, allow_destroy: true
+	
+	def total  
+	  self.carts.map { |cart| cart.sub_total_price }.sum
+	end
 end

@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy ]
   before_action :set_items_array, only: %i[ edit update new create ]
+  before_action :join_order_date_string, only: %i[ create ]
 
   # GET /orders or /orders.json
   def index
@@ -24,7 +25,9 @@ class OrdersController < ApplicationController
   def create
     # @order = Order.new(order_params)
 
-    order_date = [ params[:order]['order_date(1i)'], params[:order]['order_date(2i)'], params[:order]['order_date(3i)'] ].join("-")
+    puts "WEKWEK #{params[:order][:order_date]}"
+
+    return
 
     @order = Order.new(
       order_date: order_date,
@@ -85,10 +88,15 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:order_date, :total_price, :status, :customer_id)
+      params.require(:order).permit(:order_date, :total_price, :status, :customer_id, carts_attributes: [:item_id, :quantity, :_destroy])
     end
 
     def set_items_array
       @items = Item.all
+    end
+
+    def join_order_date_string
+      order_date = [ params[:order]['order_date(1i)'], params[:order]['order_date(2i)'], params[:order]['order_date(3i)'] ].join("-")
+      params[:order][:order_date] = order_date
     end
 end

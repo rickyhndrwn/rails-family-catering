@@ -1,0 +1,9 @@
+<fieldset>  
+  	<%= f.label :item, "Item" %>  
+  	<%= f.collection_select :item_id, Item.all, :id, :name, class: 'form-control input-lg'%>  
+  	<%= f.label :quantity, "Quantity" %>  
+  	<%= f.text_field :quantity %>  
+  	<%= f.hidden_field :_destroy %>  
+  	<%= link_to "remove", '#', class: "remove_fields" %>  
+ </fieldset> 
+      
