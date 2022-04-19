@@ -26,6 +26,15 @@
   </div>
 
   <div>
+    <br>
+    <%= form.label :item, style: "display: block" %>
+    <%= form.collection_check_boxes :item_ids, @items || [], :id, :name do |c| %>
+      <%= c.check_box %>&#9;<%= c.label %>
+      <br>
+    <% end %>
+  </div>
+
+  <div>
     <%= form.text_field :total_price, value: 0, type: :hidden %>
   </div>
 

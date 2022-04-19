@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy ]
+  before_action :set_items_array, only: %i[ edit update new create ]
 
   # GET /orders or /orders.json
   def index
@@ -85,5 +86,9 @@ class OrdersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def order_params
       params.require(:order).permit(:order_date, :total_price, :status, :customer_id)
+    end
+
+    def set_items_array
+      @items = Item.all
     end
 end
