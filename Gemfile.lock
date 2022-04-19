@@ -283,6 +283,7 @@ DEPENDENCIES
   rails (~> 7.0.1)
   rails-controller-testing
   rspec-rails
+  sassc-rails
   selenium-webdriver
   simple_form
   sprockets-rails
