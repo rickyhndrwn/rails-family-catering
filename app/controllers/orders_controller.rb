@@ -23,21 +23,20 @@ class OrdersController < ApplicationController
   def create
     # @order = Order.new(order_params)
 
-    if Customer.exists?(email: params[:email])
-      @order_customer_id = Customer.find_by(email: params[:email]).id
+    if Customer.exists?(email: params[:order][:email])
+      order_customer_id = Customer.find_by(email: params[:order][:email]).id
     else
-      @new_customer = Customer.new(name: params[:name], email: params[:email])
-      @order_customer_id = @new_customer.id if @new_customer.save
+      new_customer = Customer.new(name: params[:order][:name], email: params[:order][:email])
+      order_customer_id = new_customer.id if new_customer.save
     end
 
-    puts "WEKWEKWEK #{params[:order_date]} #{params[:total_price]} #{params[:status]}"
-    puts "WEKWEKWEK #{params[:name]} #{params[:email]}"
+    order_date = [ params[:order]['order_date(1i)'], params[:order]['order_date(2i)'], params[:order]['order_date(3i)'] ].join("-")
 
     @order = Order.new(
-      order_date: params[:order_date],
-      total_price: params[:total_price],
-      status: params[:status],
-      customer_id: @order_customer_id
+      order_date: order_date,
+      total_price: params[:order][:total_price],
+      status: params[:order][:status],
+      customer_id: order_customer_id
     )
 
     respond_to do |format|
