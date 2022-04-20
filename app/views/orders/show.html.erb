@@ -3,5 +3,11 @@
 <%= render @order %>
 
 <div>
+  <% if @order.status == "NEW" %>
+    <%= button_to 'Mark as Paid', { controller: :orders, action: 'update_order_status', id: @order.id, status: "PAID" }, method: :post, class:"btn btn-primary" %>
+    <br>
+    <%= button_to 'Mark as Cancelled', { controller: :orders, action: 'update_order_status', id: @order.id, status: "CANCELLED" }, method: :post, class:"btn btn-danger" %>
+  <% end %>
+  <br>
   <%= link_to "Back", orders_path, class:'btn btn-dark' %>
 </div>

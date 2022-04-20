@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "items#index"
+  
+  post 'orders/update_order_status'
 end
