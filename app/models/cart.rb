@@ -9,6 +9,6 @@ class Cart < ApplicationRecord
 	end
 
 	def set_sub_total_price
-		self.sub_total_price = self.quantity * self.price
+		self.sub_total_price = self.quantity.nil? ? 1 * self.price : self.quantity * self.price
 	end
 end
