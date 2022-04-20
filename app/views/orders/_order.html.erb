@@ -5,29 +5,20 @@
       <p class="col-md-8 fs-4">
         Order date: <%= order.order_date %>
       </p>
+      <p class="col-md-8 fs-4">
+        Order status: <%= order.status %>
+      </p>
+      <p class="col-md-8 fs-4">
+        Total price: Rp. <%= order.total_price %>
+      </p>
       <p>
         <br>
         <strong>Choosen item(s):</strong>
-        <% order.items.each do |item| %>
-        <li><%= item.name %></li>
+        <% order.carts.each do |cart| %>
+        <li><%= cart.item.name %> (Qty: <%= cart.quantity %>)</li>
+        - Sub-total price: Rp. <%= cart.sub_total_price %>
         <% end %>
       </p>
     </div>
   </div>
-          
-  <p>
-    <strong>Order date:</strong>
-    <%= order.order_date %>
-  </p>
-
-  <p>
-    <strong>Total price:</strong>
-    <%= order.total_price %>
-  </p>
-
-  <p>
-    <strong>Status:</strong>
-    <%= order.status %>
-  </p>
-
 </div>
