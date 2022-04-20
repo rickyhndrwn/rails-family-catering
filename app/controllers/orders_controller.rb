@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_items_array, only: %i[ edit update new create ]
   before_action :join_order_date_string, only: %i[ create ]
   before_action :get_customer_id_by_email, only: %i[ create ]
+  before_action :check_order_status, only: %i[ index ]
 
   # GET /orders or /orders.json
   def index
@@ -97,5 +98,10 @@ class OrdersController < ApplicationController
           params[:order][:customer_id] = -1
         end
       end
+    end
+
+    def check_order_status
+      current_hour = Time.now.strftime('%H')
+      Order.where('status LIKE ?', 'NEW').update_all(status: 'CANCELLED') if current_hour.to_i >= 17
     end
 end
