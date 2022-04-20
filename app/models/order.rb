@@ -14,4 +14,12 @@ class Order < ApplicationRecord
 	def total_price
 	  self.carts.map { |cart| cart.sub_total_price }.sum
 	end
+
+  def self.by_order_date(order_date)
+    where("order_date == ?", "#{order_date}").order(status: :desc)
+  end
+
+  def self.get_todays_date
+    Time.now.strftime('%Y-%m-%d')
+  end
 end
