@@ -27,8 +27,8 @@
         <%= order.customer.name %> (<%= order.customer.email %>)
       </td>
       <td>
-        <% order.items.sort_by(&:name).each do |item| %>
-        <li><%= item.name %></li>
+        <% order.carts.each do |cart| %>
+        <li><%= cart.item.name %> (Qty: <%= cart.quantity %>)</li>
         <% end %>
       </td>
       <td>
