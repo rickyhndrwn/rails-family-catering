@@ -1,4 +1,20 @@
 <div id="<%= dom_id order %>">
+  <div class="p-2 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-2">
+      <h1 class="display-6 fw-bold"><%= order.customer.name %> (<%= order.customer.email %>)</h1>
+      <p class="col-md-8 fs-4">
+        Order date: <%= order.order_date %>
+      </p>
+      <p>
+        <br>
+        <strong>Choosen item(s):</strong>
+        <% order.items.each do |item| %>
+        <li><%= item.name %></li>
+        <% end %>
+      </p>
+    </div>
+  </div>
+          
   <p>
     <strong>Order date:</strong>
     <%= order.order_date %>
