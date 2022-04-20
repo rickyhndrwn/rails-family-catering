@@ -5,7 +5,7 @@ class Order < ApplicationRecord
 
   belongs_to :customer
 
-  has_many :carts
+  has_many :carts, dependent: :delete_all
   has_many :items, through: :carts
 
   accepts_nested_attributes_for :carts, allow_destroy: true

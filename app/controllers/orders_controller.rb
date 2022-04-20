@@ -88,7 +88,7 @@ class OrdersController < ApplicationController
         if @new_customer.save
           params[:order][:customer_id] = @new_customer.id
         else
-          arams[:order][:customer_id] = -1
+          params[:order][:customer_id] = -1
         end
       end
     end
