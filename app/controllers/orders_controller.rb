@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: %i[ show edit update destroy ]
-  before_action :set_items_array, only: %i[ edit update new create ]
-  before_action :join_order_date_string, only: %i[ create ]
-  before_action :get_customer_id_by_email, only: %i[ create ]
-  before_action :check_order_status, only: %i[ index ]
+  before_action :set_order, only: %i[show edit update destroy]
+  before_action :set_items_array, only: %i[edit update new create]
+  before_action :join_order_date_string, only: %i[create]
+  before_action :get_customer_id_by_email, only: %i[create]
+  before_action :check_order_status, only: %i[index]
 
   # GET /orders or /orders.json
   def index
@@ -72,6 +72,9 @@ class OrdersController < ApplicationController
     @order.update!(status: params[:status])
     redirect_to orders_path
   end
+
+  # def generate_report
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'orders/generate_report' => 'orders#generate_report'
+
   resources :orders
   resources :customers
   resources :categories
