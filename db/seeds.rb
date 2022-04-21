@@ -14,28 +14,28 @@ Item.create(
   name: 'Rujak',
   description: 'Salad dish of Javanese origin, commonly found in Indonesia, Malaysia and Singapore.',
   price: 50,
-  category_ids: [cat1, cat2]
+  categories: [cat1, cat2]
 )
 
 Item.create(
   name: 'Tahu',
   description: 'Prepared by coagulating soy milk and then pressing the resulting curds into solid white blocks of varying softness.',
   price: 30,
-  category_ids: [cat1, cat2, cat3]
+  categories: [cat1, cat2, cat3]
 )
 
 Item.create(
   name: 'Soda Gembira',
   description: 'Made up of carbonated water, condensed milk, syrup and ice.',
   price: 25,
-  category_ids: [cat4]
+  categories: [cat4]
 )
 
 Item.create(
   name: 'Teh',
   description: 'Aromatic beverage prepared by pouring hot or boiling water over cured or fresh leaves of Camellia sinensis.',
   price: 15,
-  category_ids: [cat4]
+  categories: [cat4]
 )
 
 Customer.create(name: 'Ali', email: 'ali@email.com')
