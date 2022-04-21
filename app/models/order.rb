@@ -16,7 +16,7 @@ class Order < ApplicationRecord
 	end
 
   def self.by_order_date(order_date)
-    where("order_date == ?", "#{order_date}").order(status: :desc)
+    where('order_date == ?', order_date).order(status: :desc)
   end
 
   def self.get_todays_date
@@ -25,5 +25,9 @@ class Order < ApplicationRecord
 
   def self.by_customer_email(email)
     joins(:customer).where('customers.email == ?', email).order(status: :desc)
+  end
+
+  def self.by_total_price(total_price)
+    where('total_price >= ?', total_price).where('status == ?', 'PAID').order(total_price: :desc)
   end
 end

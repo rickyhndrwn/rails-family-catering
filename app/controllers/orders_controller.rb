@@ -11,6 +11,8 @@ class OrdersController < ApplicationController
                 Order.by_order_date(params[:order_date])
               elsif !params[:email].nil?
                 Order.by_customer_email(params[:email])
+              elsif !params[:total_price].nil?
+                Order.by_total_price(params[:total_price].to_f)
               else
                 Order.all
               end
@@ -41,6 +43,9 @@ class OrdersController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
+
+      @order[:total_price] = @order.total_price
+      @order.save
     end
   end
 
