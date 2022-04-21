@@ -1,3 +1,14 @@
 <h1>Generate Report</h1>
 
 <%= link_to "Back", orders_path, class:'btn btn-dark' %>
+<br><br>
+<div class="p-2 mb-4 bg-light rounded-3">
+	<div class="container-fluid py-2">
+		<%= form_with url: orders_path, method: :get do |form| %>
+			<%= form.label 'By Customer Email', style: "display: block" %>
+			<%= form.collection_select :email, Customer.all, :email, :email %>
+			<br><br>
+			<%= form.submit "Search", class:'btn btn-secondary'%>
+		<% end %>
+	</div>
+</div>
