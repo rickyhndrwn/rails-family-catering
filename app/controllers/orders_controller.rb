@@ -7,7 +7,13 @@ class OrdersController < ApplicationController
 
   # GET /orders or /orders.json
   def index
-    @orders = params[:order_date].nil? ? Order.all : Order.by_order_date(params[:order_date])
+    @orders = if !params[:order_date].nil?
+                Order.by_order_date(params[:order_date])
+              elsif !params[:email].nil?
+                Order.by_customer_email(params[:email])
+              else
+                Order.all
+              end
   end
 
   # GET /orders/1 or /orders/1.json

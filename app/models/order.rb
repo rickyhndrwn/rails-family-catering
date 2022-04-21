@@ -22,4 +22,8 @@ class Order < ApplicationRecord
   def self.get_todays_date
     Time.now.strftime('%Y-%m-%d')
   end
+
+  def self.by_customer_email(email)
+    joins(:customer).where('customers.email == ?', email).order(status: :desc)
+  end
 end
