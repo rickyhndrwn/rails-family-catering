@@ -1,25 +1,25 @@
-# Rails on Replit
+# Rails GIGIH Family Catering
 
-This is a template to get you started with Rails on Replit. It's ready to go so you can just hit run and start coding!
+## Description
+This is a Final Project Assignment repository for Generasi GIGIH 2.0 Back-end Track. This project is a web apps that simulate the management of items and orders of a Catering business.
 
-This template was generated using `rails new` (after you install the `rails` gem from the packager sidebar) so you can always do that if you prefer to set it up from scratch. The only had two make config changes we had to make to run it on Replit:
+## ERD
+![Project's ERD](image-db-erd.jpg)
 
-- bind the app on `0.0.0.0` instead of `localhost` (see `.replit`)
-- allow `*.repl.co` hosts (see `config/environments/development.rb`)
-- allow the app to be iframed on `replit.com` (see `config/application.rb`)
+## User Stories
+- User should be able to create item
+- User should be able to see all created item(s)
+- User should be able to edit an existing item
+- User should be able to delete an existing item
+- User should be able to create order
+- User should be able to edit the status of an existing order
+- User should be able to see daily order
 
-## Running the app
-
-Simple hit run! You can edit the run command from the `.replit` file.
-
-## Running commands
-
-Start every command with `bundle exec` so that it runs in the context of the installed gems environment. The console pane will give you output from the server but you can run arbitrary command from the shell without stopping the server.
-
-## Database
-
-SQLite would work in development but we don't recommend running it in production. Instead look into using the built-in [Replit database](http://docs.replit.com/misc/database). Otherwise you are welcome to connect databases from your favorite provider. 
-
-## Help
-
-If you need help you might be able to find an answer on our [docs](https://docs.replit.com) page. Alternatively you can [ask in the community](https://replit.com/talk/ask). Feel free to report bugs [here](https://replit.com/bugs) and give us feedback [here](https://Replit/feedback).
+## Getting Started
+### Steps to run this locally
+- Clone this repo
+- run `bundle install` to install the required libraries and depenencies
+- run `rails db:migrate` to run the database migrations
+- run `rails db:migrate RAILS_ENV=test` to run the test database migrations
+- run `rails db:seed` to populate some tables from the seeder
+- run `rails s` to start the local server
