@@ -43,9 +43,6 @@ class OrdersController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
-
-      @order[:total_price] = @order.total_price
-      @order.save
     end
   end
 
