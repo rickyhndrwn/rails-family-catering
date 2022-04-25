@@ -12,11 +12,11 @@ class Order < ApplicationRecord
   has_many :items, through: :carts
 
   accepts_nested_attributes_for :carts, allow_destroy: true
-	
-	def update_total_price
-	  new_total_price = self.carts.map { |cart| cart.sub_total_price }.sum
+  
+  def update_total_price
+    new_total_price = self.carts.map { |cart| cart.sub_total_price }.sum
     self.update_column(:total_price, new_total_price)
-	end
+  end
 
   def self.by_order_date(order_date)
     where('order_date == ?', order_date).order(status: :desc)

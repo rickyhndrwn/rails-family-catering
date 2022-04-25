@@ -22,4 +22,15 @@
 	</div>
 </div>
 
+<div class="p-2 mb-4 bg-light rounded-3">
+	<div class="container-fluid py-2">
+		<%= form_with url: orders_path, method: :get do |form| %>
+			<%= form.label 'By Order Date', style: "display: block" %>
+			<%= form.date_field :order_date %>
+			<br><br>
+			<%= form.submit "Search", class:'btn btn-secondary'%>
+		<% end %>
+	</div>
+</div>
+
 <%= link_to "Back", orders_path, class:'btn btn-dark' %>
