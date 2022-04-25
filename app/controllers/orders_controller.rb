@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[show edit update destroy]
   before_action :set_items_array, only: %i[edit update new create]
-  before_action :join_order_date_string, only: %i[create]
   before_action :get_customer_id_by_email, only: %i[create]
   before_action :check_order_status, only: %i[index]
 
@@ -91,11 +90,6 @@ class OrdersController < ApplicationController
 
     def set_items_array
       @items = Item.all
-    end
-
-    def join_order_date_string
-      order_date = [ params[:order]['order_date(1i)'], params[:order]['order_date(2i)'], params[:order]['order_date(3i)'] ].join("-")
-      params[:order][:order_date] = order_date
     end
 
     def get_customer_id_by_email
